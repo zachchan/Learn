@@ -1,13 +1,6 @@
-"# Learn List" 
+﻿"# Learn List" 
 
-"# ѧϰ�б� "
+"# 学习列表 "
 
-	# [��Ŀ��ַ](https://github.com/zachchan/Learn?_black)
+	# [项目地址](https://github.com/zachchan/Learn)
 
-
-//js
-var aTagArr = [].slice.apply(document.getElementsByTagName("a"));
-
-aTagArr.forEach(function (e, i) {
-  e.href.indexOf("_blank") > -1 ? e.target = "_blank" : null;
-});
