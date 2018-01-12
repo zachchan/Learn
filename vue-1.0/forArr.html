@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+            <!-- track-by 强制通过索引去遍历 -->
+            <!-- 如果在数组中取到的值为相同的值 那么需要用到track-by  防止报黄报错 -->
+        <ul v-for="(key,m) in datas" track-by="$index">
+            <li>{{key}}：{{$index}}-{{m.name}}:{{m.price}}</li>
+            <!-- 没有$key -->
+        </ul>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                datas:[
+                    {name:"苹果",price:"90"},
+                    {name:"香蕉",price:"91"},
+                    {name:"橘子",price:"92"}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

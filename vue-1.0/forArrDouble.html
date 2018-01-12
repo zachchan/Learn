@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(key,mess) in datas">
+            <div>{{$index}}:
+                {{mess.name}}:{{mess.price}}
+                <div v-for="mess2 in mess.type">
+                    <!-- 在父级写上索引 儿子可以拿到父亲的索引值 -->
+                    {{key}}:{{mess2}}
+                </div>      
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                datas:[
+                    {name:"苹果",price:"90",type:["red","blue"]},
+                    {name:"香蕉",price:"91",type:["black"]},
+                    {name:"橘子",price:"92",type:["pink"]}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

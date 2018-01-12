@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-on 绑定事件 ：事件名字 -->
+        <!-- v-on 执行方法的时候需要传递参数的时候添加(),
+            如果不需要传递参数就不要写了，如果需要传递参数，我们要手动传递事件源 -->
+            <!-- 我们可以通过@符号 取代 v-on: -->
+            
+        <!-- <div v-on:click="add(1,$event)">hello Vue</div> -->
+        <div @click="add(1,$event)">hello Vue</div>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                imgUrl:"https://blog.zachchan.com/wp-content/uploads/2017/12/201711071936012.png",
+                href:"https://blog.zachchan.com"            
+            },
+            methods:{
+                //我们在vue中把方法都定义在methods对象中
+                add:function(num,e){
+                    //e是事件源
+                    console.log(num,e)
+                    alert(100)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

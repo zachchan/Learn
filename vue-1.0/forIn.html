@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 在angularjs中，用ng-repeat  vue中用 v-for -->
+    <div id="app">
+        <template v-for=" (key,m) in datas">
+        {{$index}}-{{key}}:{{$key}},{{m}}<br/>    
+        </template> 
+        <!-- $index 表示当前第几个 （在vue中 $odd $even $fist $last 都没有   -->
+    </div>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                datas:{
+                    name:"test",
+                    age:"12"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

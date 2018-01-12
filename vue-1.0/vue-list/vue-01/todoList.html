@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>待办事项</title>
+    <link rel="stylesheet" href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+        <br> <br> 
+   <div id="app" class="container" style="text-align:center;">
+       <table class="table table-bordered table-hover">  
+        <!-- 数据录入 -->
+        <form class="form-horizontal">
+            <div class="from-grop from-grop-lg">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="newList.msg">     
+                </div>
+                <div class="col-sm-1">
+                    <span  class="btn btn-info" @click="addList">立即添加</span>    
+                </div>
+                <div class="col-sm-1">
+                        <span  class="btn btn-info" @click="change">{{statusText}}</span>    
+                </div>      
+            </div> 
+                
+        </form> <br> <br> <br> 
+        <!-- 展示数据    -->
+           <tr><h4>{{statusTitle}}</h4></tr>
+           <tr >
+                <th style="text-align:center;">序号</th>
+                <th style="text-align:center;">事项</th>
+                <th style="text-align:center;">待办人</th>
+                <th style="text-align:center;">管理</th>
+           </tr>
+           <template v-if="status">
+                <tr v-for="(key,item) in list">
+                    <td>{{key+1}}</td>
+                    <td>{{item.msg}}</td>
+                    <td>{{item.author}}</td>
+                    <td><button class="btn btn-success" @click="sList(item)">未完成</button> <button class="btn btn-danger" @click="delList(item)">删除</button></td>
+                </tr>
+            </template>
+           <tr v-else v-for="(key,item) in successList">
+                <td>{{key}}</td>
+                <td>{{item.msg}}</td>
+                <td>{{item.author}}</td>
+                <td><button class="btn btn-success" disabled="disabled">已完成</button> <button class="btn btn-danger" @click="reslList(item)">还原</button></td>
+            </tr>
+       </table>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
+    <script>
+     var vm = new Vue({
+            el:"#app",
+            data:{
+                status:true,
+                statusText:"查看已完成",
+                statusTitle:"未完成列表展示",
+                list:[
+                    {msg:"今天天气不错",author:"zach"},
+                    {msg:"今天天气不错",author:"zach"},
+                    {msg:"今天天气不错",author:"zach"},
+                    {msg:"今天天气不错",author:"zach"}
+                    ],
+                newList:{msg:"",author:"zach"},
+                successList:[]
+            },
+            methods:{
+                change:function(){
+                    this.status = !this.status                
+                    if(this.status){this.statusText="查看已完成"}
+                    if(!this.status){this.statusText="查看未完成";}
+                    if(this.status){this.statusTitle="未完成列表展示"}
+                    if(!this.status){this.statusTitle="已完成列表展示";}
+                },
+                addList:function(){
+                   if(this.newList.msg!=""){ this.list.push(this.newList)}else{alert("内容不能为空！")}
+                    this.newList={msg:"",author:"zach"}
+                    this.status=true;
+                    if(this.status){this.statusText="查看已完成"}
+                    if(!this.status){this.statusText="查看未完成";}
+                    if(this.status){this.statusTitle="未完成列表展示"}
+                    if(!this.status){this.statusTitle="已完成列表展示";}
+                },
+                delList:function(item){
+                    this.list.$remove(item)
+                    alert("删除成功！")
+                },
+                sList:function(item){
+                    this.list.$remove(item)
+                    this.successList.push(item);
+                    alert("恭喜您，又完成一项任务！点击“查看已完成” 即可查看您完成的事项！")
+                },
+                reslList:function(item){
+                    this.successList.$remove(item)
+                    this.list.push(item);
+                    alert("已还原到“未完成列表”！")
+                }
+            }
+            
+        })
+
+    
+    </script> 
+</body>
+</html>

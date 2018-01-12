@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-bind绑定动态属性 （把src绑定到v-bind上后，等待数据加载完成，才去渲染数据，不用{{}} ） -->
+        <!-- 可以直接使用：的方式直接进行绑定 动态去data上的值 -->
+        <!-- <img v-bind:src="imgUrl" alt="">
+        <a v-bind:href="href">{{href}}</a> -->
+        <img :src="imgUrl" alt="">
+        <a :href="href">{{href}}</a>
+    </div>
+    <script src="https://cdn.bootcss.com/vue/1.0.28/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                imgUrl:"https://blog.zachchan.com/wp-content/uploads/2017/12/201711071936012.png",
+                href:"https://blog.zachchan.com"            
+            }
+        })
+    </script>
+</body>
+</html>
