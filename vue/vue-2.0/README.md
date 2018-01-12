@@ -1,6 +1,6 @@
 ﻿README
 ===========================
-学习笔记
+vue-2.0 学习笔记 
 
 
 ****
@@ -14,12 +14,12 @@
 
 ****
 
-## [项目地址](https://github.com/zachchan/Learn)：https://github.com/zachchan/Learn
+## [项目地址](https://github.com/zachchan/Learn/tree/master/vue/vue-1.0)：https://github.com/zachchan/Learn/tree/master/vue/vue-2.0
 
 
 
-## 目录
-
-* [vue2.0](https://github.com/zachchan/Learn/tree/master/vue/vue-2.0)
+## 预览Demo
+	
+* None
 
 
