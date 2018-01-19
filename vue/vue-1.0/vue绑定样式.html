@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .color {
+            color: red;
+        }
+        
+        .background {
+            background: cyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="{{style2}}">zachchan</div>
+        <!-- 动态绑定 绑定的是样式对应的类名 -->
+        <div :class="{color:true,background:false}">zachchan</div>
+        <!-- 使用数组 -->
+        <div :class="[style1,style2]">zachchan</div>
+        <!-- 数组和对象结合 使用 -->
+        <div :class="[style1,{style2:false}]">zachchan</div>
+        <!-- 在数组里结合三元表达式 使用 -->
+        <div :class="[false?style1:'style3',{style2:false}]">zachchan</div>
+    </div>
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                style1: "color",
+                style2: "background"
+            }
+        })
+    </script>
+</body>
+
+</html>

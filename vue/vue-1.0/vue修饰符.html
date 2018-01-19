@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- @click.self 限制传播， 将事件绑定到自己身上 子事件冒泡也不会影响-->
+    <div id="app" @click.self="parent">{{datas}}
+        <!-- @click.stop 阻止事件冒泡，阻事件传播 -->
+        <div @click.stop="child">aa</div>
+        <!-- @click.prevent 阻止默认事件 -->
+        <a href="https://blog.zachchan.com" @click.prevent>阻止默认事件</a>
+        <!-- 按键修饰符 -->
+        <!-- @keyup  监控键盘事件 -->
+        <!-- @keyup.enter 按下回车才会触发 -->
+        <input type="text" @keyup.enter="parent">
+    </div>
+
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                datas: "test"
+            },
+            methods: {
+                parent() {
+                    alert(1)
+                },
+                child() {
+                    alert(1 - 1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="false">
+            我是内容
+        </div>
+        <div v-show="false">
+            我是内容
+        </div>
+
+        <!-- template标签是不会被渲染的 解决无意义的空标签问题 template一般配合v-else使用 -->
+        <!-- 在 v-show上不支持template语法 -->
+        <template v-if="true">
+            <div>1</div>
+            <div>2</div>
+        </template>
+
+        <!-- v-else要跟在v-if后面，也可以跟在v-show后面   -->
+        <div v-else>
+            如果template中 v-if的条件不成立 就显示 v-else
+        </div>
+    </div>
+
+
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+                el: "#app",
+                data: {
+                    message: "涉及到极点拉萨警方立即as啊打算减肥阿道夫啊"
+                }
+            })
+            // v-show/v-if的区别
+            //v-show => ng-show 操作的是样式 （display:none） （一般作用于样式切换）
+            //v-if => ng-if 操作的是DOM （如果条件不成立 就移除dom了) （一开始知道存在与否，不会去切换的时候用）
+            //区别：v-if有更高的切换消耗 而v-show有更高的初始渲染消耗
+    </script>
+</body>
+
+</html>

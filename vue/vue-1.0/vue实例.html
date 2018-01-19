@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">{{message.age}}</div>
+
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var mess = {
+            age: 18
+        }
+        var vm = new Vue({
+                el: "#app",
+                data: {
+                    message: mess
+                }
+            })
+            // vm.message.age = 100;
+            //我们当前实例vm和mess这个对象指向的是同一内存空间
+
+        //在实例创建后挂载以前不存在的属性是不会刷新视图的
+        console.log(vm.message == mess)
+    </script>
+</body>
+
+</html>

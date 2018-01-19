@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{message}}</div>
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+                data: {
+                    message: "sss"
+                },
+                created() {
+                    alert("1:创建实例")
+                },
+                beforeCompile() {
+                    alert("2:编译前")
+                },
+                compiled() {
+                    alert("3:编译完成")
+                },
+                ready() {
+                    alert("4:准备好了")
+                },
+                beforeDestroy() {
+                    alert("5:销毁前")
+                },
+                destroyed() {
+                    alert("6:销毁了")
+                }
+            })
+            //手动挂载 el
+        vm.$mount("#app");
+        //销毁需要调用$destroy
+        vm.$destroy();
+    </script>
+</body>
+
+</html>

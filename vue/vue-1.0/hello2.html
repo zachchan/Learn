@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 在angularJS中用ng-model -->
+    <!-- {{mseeage?message:11}}支持三元表达式 -->
+    <!--{{*}} 可以 只绑定一次 视图变化时不进行改变 -->
+    <!--{{{}}} 绑定html标签 识别html标签 -->
+    <div class="app">
+        <input type="text" v-model='message'>
+        <!-- {{message}} -->
+        <!-- <br> {{message?message:1}} -->
+        <br> {{*message}} {{{message}}}
+
+    </div>
+</body>
+<script src="vue1.0.28.js"></script>
+<script>
+    var vm = new Vue({ //实例  MVVM
+        el: ".app",
+        data: {
+            // message: "333"
+            message: "<h1>hello</h1>"
+        }
+    })
+</script>
+
+</html>

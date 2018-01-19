@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{message}}
+        <input type="text" v-model='message'>
+        <br> {{age}}</div>
+
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+                el: "#app",
+                data: {
+                    message: "aaaa"
+                }
+            })
+            //vm.$el  不能更改绑定数据的元素
+        console.log(vm.$el == document.getElementById("app"))
+
+        //vm.$data 就是data对应的这个对象
+        console.log(vm.$data);
+        // vm.$data = { age: 200 } //可以直接更改对象指定
+        // console.log(vm.$data);
+        //vm.$watch 监听数据变化
+        vm.$watch('message', function(newValu, oldVlue) {
+            console.log(newValu, oldVlue)
+        })
+    </script>
+</body>
+
+</html>

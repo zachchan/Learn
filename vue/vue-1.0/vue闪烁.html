@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">{{message}}
+        <!-- 在ng中 ng-bind可以解决单个标签闪烁问题 -->
+        <!-- v-text 只能解决单个闪烁问题 -->
+        <!-- 在ng中 ng-cloak 可以解决多级数据闪烁问题 -->
+        <!-- v-cloak 可以解决多级数据闪烁问题 -->
+        <div v-text="message"></div>
+        <div v-cloak>
+            {{message}}
+        </div>
+    </div>
+
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                message: "涉及到极点拉萨警方立即as啊打算减肥阿道夫啊"
+            }
+        })
+    </script>
+</body>
+
+</html>

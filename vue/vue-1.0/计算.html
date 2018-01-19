@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{pages}}
+        <input type="text" v-model="page">
+    </div>
+    <script src="vue1.0.28.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                page: 1,
+                num: 2
+            },
+            computed: {
+                pages: function() { //默认的方法是获取
+                    //在vm中所有的this指向的都是当前实例
+                    return this.page * this.num
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
