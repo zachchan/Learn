@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" >
+        <!-- 如果写入的是checkbox 我们需要在modle中指定一个数组 -->
+        <div >
+            <input type="checkbox" name='group' v-model = 'checks'  value="1">
+            <input type="checkbox" name='group' v-model = 'checks'  value="2">
+            <input type="checkbox" name='group' v-model = 'checks'  value="3">
+            {{checks}}
+        </div>
+
+        <div>
+            <input type="radio" v-model='radio' value="1">
+            <input type="radio" v-model='radio' value="2">
+            {{radio}}
+        </div>
+        <div>
+            <!-- 单选菜单为字符串类型，多选为数组类型 -->
+        <!-- <select v-model="selected"> -->
+        <select v-model="selected" multiple>
+            <option value="1">test1</option>
+            <option value="2">test2</option>
+            <option value="3">test3</option>
+        </select>
+        {{selected}}
+       </div>
+
+       <div>
+           <!-- 动态生成select： angular中有 as for in  在vue 中 只能用 v-for -->
+           <select v-model="selected2">
+                <option :value="val.value" v-for="val in selectes">{{val.name}}</option>
+           </select>
+           {{selected2}}
+       </div>
+
+       <div>
+           <!-- 失去焦点 刷新值 lazy -->
+           <input type="text" v-model="lanlazy" lazy> {{lanlazy}}
+           <!-- 延迟刷新  debounce = 时间单位 秒-->
+           <input type="text" v-model="debounce1" debounce="2000">
+          {{debounce1}}
+       </div>
+    </div>
+    <script src="vue1.0.28.js"></script>
+    <script>
+      
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                checks:[],
+                radio:[],
+                selected:"",
+                selected2:"",
+                selectes:[
+                    {name:"苹果",value:"1"},
+                    {name:"橘子",value:"2"},
+                    {name:"香蕉",value:"3"}
+                    ],
+                lanlazy:"",
+                debounce1:"" 
+            }
+        })
+    </script>
+</body>
+
+</html>

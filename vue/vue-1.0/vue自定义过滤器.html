@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{datas | test 2}}</div>
+        <div><input type="text" v-model="dataMy | my">{{dataMy}}</div>
+
+    </div>
+    <script src="vue1.0.28.js"></script>
+    <script>
+        // 自定义过滤器  可以改变原有的filter
+        // Vue.filter('test',function(value,begin,end){
+        //     return value + begin + end;
+        // });
+
+        // Vue中的自定义过滤器有两个方法，一个是写方法，一个是读方法
+
+        // demo: 写一个加后缀过滤器
+        Vue.filter('my',{
+            write(dataMy){ //默认我们写入时要进行过滤，对数据进行写入的修改
+                return  dataMy+ 'github' 
+            }
+            // read(){ //默认写一个函数的时候是读取
+
+            // }
+        })
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                datas: 10,
+                dataMy:""
+            }
+        })
+    </script>
+</body>
+
+</html>
