@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cola-UI-01</title>
+    <!-- 引入Semantic-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/semantic.css">
+    <!-- 引入cola-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- 引入jQuery  .js文件-->
+    <script src="jQuery-2.4.4.js"></script>
+    <!-- 引入第三方打包后的js文件 -->
+    <script src="cola-ui-v1.0.6/src/3rd.js"></script>
+    <!-- 引入Semantic-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/semantic.js"></script>
+    <!-- 引入cola-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/cola.js"></script>
+
+    <!-- cola(function(model){ }) 是一个默认的初始化方法，其中的代码会在页面的DOM树装载完成之后自动执行，其触发时机与jQuery.ready相同。  -->
+    
+    <!-- Cola-UI中的Model对象管理三件事：数据、绑定、Action -->
+        <!-- 数据通常利用Model的get和set方法来读取和写入。 -->
+        <!-- 数据绑定通常都是通过DOM指令或控件的绑定表达式来建立。 -->
+        <!-- Action通常利用Model的action方法来声明和访问。 -->
+
+   <!--双向数据绑定 -->
+   <script type="text/javascript">
+        cola(function(model){
+            model.set("text","hello");
+            model.action({
+                setText:function(){
+                    model.set("text","cola-ui")
+                }
+            })
+        })
+   </script>
+</head>
+<body>
+        <!-- c-bind指令声明了该Input绑定到name这个数据项 -->
+
+        <!-- Label与Model之间事实上是一种动态的单向绑定，
+            而Input与Model之间则是动态的双向绑定关系 -->
+    <div c-bind="text"></div>
+    <input c-bind="text">
+    <!-- c-onclick 由Cola来建立onclick的事件绑定 -->
+    <!-- 本例中c-onclick的内容是一段表达式，用于调用一个名为setText的Action -->
+    <button c-onclick="setText()">设置文本</button>
+
+     <!-- 我们通常可以使用"c-"开通的DOM指令，利用这种方式在控件与数据模型之间建立双向的数据绑定。 -->
+
+    <!-- 执行过程：当用户点击按钮时，按钮的事件会调用到我们定义在Model中的Action，
+                  Action的代码会修改Model中的数据项。
+                  同样的，Model检测到其中的数据项变化之后，
+                  将这一消息广播给同样绑定到这一数据项的Label和Input，
+                  因此Label和Input就能自动显示出最新的数据变化。 -->
+    </body>
+</html>
