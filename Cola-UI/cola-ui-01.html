@@ -28,8 +28,8 @@
 
                 // 事件绑定
                 model.action({
-                    testfunction:function(){
-                        alert("testfunction")
+                    testMessage:function(){
+                        alert("testMessage")
                     }
                 })
         });
@@ -39,6 +39,8 @@
     <input c-bind="text">
     <div c-bind="text"></div>
     <!-- 注意：在Cola的表达式中，只能调用Cola的Action，c-onclick="alert('Hello World!')"这样的写法是无法正确执行的。 -->
-    <button c-onclick="testfunction()">clickTest</button>
+    <button c-onclick="testMessage()">clickTest</button>
+    <!-- 利用DOM指令使用Cola-UI中的控件 -->
+    <c-button caption="clickTest" c-onclick="testMessage()"></c-button>
 </body>
 </html>
