@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cola-UI-05</title>
+    <!-- 引入Semantic-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/semantic.css">
+    <!-- 引入cola-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- 引入jQuery  .js文件-->
+    <script src="jQuery-2.4.4.js"></script>
+    <!-- 引入第三方打包后的js文件 -->
+    <script src="cola-ui-v1.0.6/src/3rd.js"></script>
+    <!-- 引入Semantic-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/semantic.js"></script>
+    <!-- 引入cola-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/cola.js"></script>
+
+    <script type="text/javascript">
+        cola(function (model) {  /*初始化方法*/
+            model.set({ /*Model中写入了两个数据项 名字是todos、sortOptions  值为两个数组*/
+                todos: [/*用于装载列表默认数据*/
+                    { title: "a事项1", done: true },/*事项1,默认完成*/
+                    { title: "b事项2" },
+                    { title: "c事项3" , done: true},/*事项3,默认完成*/
+                    { title: "e事项5" },
+                    { title: "d事项4" }
+                ],
+                sortOptions: [/*用于装载复选框选项值*/
+                    "", 
+                    "done", /*按照要完成事项列表进行排序*/
+                    "-done",/*按照已完成事项列表进行排序*/
+                     "title", /*按照a-z英文字母 事项列表进行 正列排序*/
+                     "-title", /*按照a-z英文字母 事项列表进行 倒列排序*/
+                     "done,title"]
+            });
+
+            model.action({/*Action调用*/
+                add: function () {/*写一个增加事项的方法*/
+                    model.get("todos").insert({
+                        title: model.get("newItem")
+                    });
+                    model.set("newItem", null);/*Model中写入了一个数据项，名字是newItem，值默认是NUll*/
+                },
+                delete: function (todo) {/*写一个删除事项的方法*/
+                    todo.remove();
+                },
+                stat: function () {
+                    var todos = model.get("todos"), done = 0;
+                    todos.each(function (todo) {
+                        if (todo.get("done")) done++;
+                    });
+                    return done + "/" + todos.entityCount;
+                }
+            });
+        });
+    </script>
+</head>
+<body style="padding:20px">
+<p>
+    <input c-bind="newItem">
+    <button c-onclick="add()" c-disabled="newItem?false:true">添加事项</button>
+</p>
+<p>
+    Filter: <input c-bind="filterParam">
+    Sort: <select c-bind="sortParam" c-options="sortOptions"></select>
+</p>
+<ul>
+    <li c-repeat="todo in sort(filter(todos,filterParam),sortParam)">
+        <input type="checkbox" c-bind="todo.done">
+        <span c-bind="todo.title"></span>
+        <button c-onclick="delete(todo)">删除</button>
+    </li>
+</ul>
+<p>
+    <span c-bind="stat()"></span>
+</p>
+</body>
+</html>
