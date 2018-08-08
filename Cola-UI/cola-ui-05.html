@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cola-UI-04</title>
+    <!-- 引入Semantic-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/semantic.css">
+    <!-- 引入cola-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- 引入jQuery  .js文件-->
+    <script src="jQuery-2.4.4.js"></script>
+    <!-- 引入第三方打包后的js文件 -->
+    <script src="cola-ui-v1.0.6/src/3rd.js"></script>
+    <!-- 引入Semantic-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/semantic.js"></script>
+    <!-- 引入cola-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/cola.js"></script>
+
+   <script type="text/javascript">
+        cola.route("/",{
+            redirectTo:"#/list"
+        });
+        cola.route("/list",{
+            title:"List",
+            templateUrl:"router-list.html",
+            jsUrl:"$.js"
+        });
+        cola.route("/detail:city",{
+            title:"Dtail",
+            templateUrl:"router-detail.html",
+            jsUrl:"$.js"
+        });
+   </script>
+</head>
+<body>
+  <p>Router Sample</p>
+  <div class="c-viewport"></div>
+</body>
+</html>
