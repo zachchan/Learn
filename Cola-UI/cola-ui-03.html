@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cola-UI-03</title>
+    <!-- 引入Semantic-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/semantic.css">
+    <!-- 引入cola-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- 引入jQuery  .js文件-->
+    <script src="jQuery-2.4.4.js"></script>
+    <!-- 引入第三方打包后的js文件 -->
+    <script src="cola-ui-v1.0.6/src/3rd.js"></script>
+    <!-- 引入Semantic-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/semantic.js"></script>
+    <!-- 引入cola-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/cola.js"></script>
+
+   <script type="text/javascript">
+       cola(function(model){
+           model.set("name","1");
+           model.action("testone",function(){
+               model.set("name","ok")
+           })
+           model.set("address",[{city:"BeiJing"},{city:"ShangHai"},{city:"GuangZhou"}]) 
+       })
+       
+   </script>
+</head>
+<body>
+    <div c-bind="name"></div>
+
+    <!-- Cola-UI允许开发人员在这种情况下以c-bind来替代bind -->
+    <input c-bind="name">
+    <c-input bind="name"></c-input>
+    <c-input c-bind="name"></c-input>
+  
+    <button c-onclick="testone()">test</button>
+    <!-- 如下几种情况都会为DOM节点或DOM节点的属性建立数据绑定关系 -->
+    
+    <!-- model与子model -->
+    <ul>
+        <li d-repeat="address in item">
+            <span d-bind="address.city"></span>
+        </li>
+    </ul>
+    <!-- 执行过程：在li的每一次迭代过程中，Cola-都会为当前迭代的DOM创建一个新的子Model，
+        这个子Model既可以访问主Model中的所有数据，同时它自己也保存了一项名为address的数据，
+        其值为当前的迭代值。而li中的span元素正是绑定了这个子Model中address，
+        因此才能正确的显示当前的迭代值。 -->
+
+</body>
+</html>
