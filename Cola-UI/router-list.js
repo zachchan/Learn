@@ -1,6 +1,6 @@
 
 cola(function(model) {
 	model.describe("addresses", {
-		provider: "../city.json"
+		provider: "city.json"
 	});
 });
