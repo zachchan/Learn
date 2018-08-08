@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cola-UI-01</title>
+    <!-- 引入Semantic-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/semantic.css">
+    <!-- 引入cola-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- 引入jQuery  .js文件-->
+    <script src="jQuery-2.4.4.js"></script>
+    <!-- 引入第三方打包后的js文件 -->
+    <script src="cola-ui-v1.0.6/src/3rd.js"></script>
+    <!-- 引入Semantic-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/semantic.js"></script>
+    <!-- 引入cola-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/cola.js"></script>
+
+
+    <!-- Cola-UI中的 Model 除了能够提供管理数据之外也可以管理动作 -->
+   <script type="text/javascript">
+        cola(function(model){
+                // 双向数据绑定
+                model.set("text","Hello World!");
+                //console.log(model);
+
+                // 事件绑定
+                model.action({
+                    testfunction:function(){
+                        alert("testfunction")
+                    }
+                })
+        });
+   </script>
+</head>
+<body>
+    <input c-bind="text">
+    <div c-bind="text"></div>
+    <!-- 注意：在Cola的表达式中，只能调用Cola的Action，c-onclick="alert('Hello World!')"这样的写法是无法正确执行的。 -->
+    <button c-onclick="testfunction()">clickTest</button>
+</body>
+</html>
