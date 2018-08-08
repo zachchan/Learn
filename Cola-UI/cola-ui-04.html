@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cola-UI-04</title>
+    <!-- 引入Semantic-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/semantic.css">
+    <!-- 引入cola-UI .css文件 -->
+    <link rel="stylesheet" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- 引入jQuery  .js文件-->
+    <script src="jQuery-2.4.4.js"></script>
+    <!-- 引入第三方打包后的js文件 -->
+    <script src="cola-ui-v1.0.6/src/3rd.js"></script>
+    <!-- 引入Semantic-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/semantic.js"></script>
+    <!-- 引入cola-UI .js文件 -->
+    <script src="cola-ui-v1.0.6/src/cola.js"></script>
+
+   <script type="text/javascript">
+    // model.describe()方法声明了addresses的数据是来自于city.json这个URL的。
+    // 这样当页面被渲染时Cola会自动利用Ajax从这个URL中装载实际的数据
+        cola(function(model){
+            model.describe("dataName",{
+                provider:"city.json"
+            })
+        })
+   </script>
+</head>
+<body>
+   <ul>
+       <li c-repeat="dataName in city">
+            <span c-bind="dataName.city"></span>
+            <span c-bind="dataName.postCode"></span>
+       </li>
+   </ul>
+</body>
+</html>
