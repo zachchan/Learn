@@ -4,3 +4,6 @@
             <a c-href="'#/detail/' + address.city" c-bind="address.city"></a>
         </li>
 </ul>
+
+<!-- 在渲染列表项中的每一行时使用了超链，点击每一个超链会跳转到#/detail/xxxx这样的子路径，
+    注意这里所说的跳转仍然是指页面内部的不涉及刷新的子路径跳转。 -->
