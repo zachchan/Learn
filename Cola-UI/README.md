@@ -26,3 +26,4 @@ Cola-UI 学习笔记
 * [路由](http://htmlpreview.github.com/?https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-05.html)
 * [todoList](http://htmlpreview.github.com/?https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-06.html)
 * [cola-ui书写规范](https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-07.html)
+* [内置Action](http://htmlpreview.github.com/?https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-08.html)与[自定义Action](https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-08.html)

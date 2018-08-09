@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--网页页面字符集-->
+    <meta charset="UTF-8">
+    <!--针对移动设备,网站显示宽度等于设备屏幕显示宽度,内容缩放比例为1:1-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--将下面的 <meta> 标签加入到页面中，可以让部分国产浏览器默认采用高速模式渲染页面：-->
+    <meta name="renderer" content="webkit">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Cola-UI-8</title>
+    <!-- css引入和样式定义区域 -->
+    <link rel="stylesheet" type="text/css" href="cola-ui-v1.0.6/src/semantic.css">
+    <link rel="stylesheet" type="text/css" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- document 内部样式定义区域-->
+    <style>
+        body {
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+Hello <span c-bind="name"></span> !
+
+<input c-bind="name">
+
+<br>
+<!-- 内置Action  -->
+
+<!-- default(value，defaultValue)
+
+如果value的值等价于逻辑false则返回defaultValue，
+否则返回value自身。null、false、0、""都会被认为是逻辑false。 -->
+default:<span c-bind="default(name1,noName1)"></span>
+<br>
+
+<!-- int(value)
+
+将传入的值转换整数，如果转换失败则返回0。 -->
+
+int:<span c-bind="int(name2)"></span>
+<br>
+
+<!-- float(value)
+
+将传入的值转换浮点数，如果转换失败则返回0。 -->
+
+float:<span c-bind="float(name3)"></span>
+<br>
+
+<!-- is(value)
+
+将传入的值转换成逻辑值。 -->
+is:<span c-bind="is(name4)"></span>
+<br>
+<!-- 
+bool(value)
+
+同is() -->
+bool:<span c-bind="bool(name5)"></span>
+<br>
+
+<!-- not(value)
+
+用于对传入的值进行逻辑非运算。 -->
+not:<span c-bind="not(name6)"></span>
+<br>
+
+<!-- isEmpty(value)
+
+用于判断传入的值是否为空。此方法对于各种类型的value值有不完全相同的处理逻辑:
+
+Array - 如果长度为0则认为是空。
+cola.EntityList - 如果其entityCount属性为0则认为是空。
+String - 如果长度为0则认为是空。
+其他情况下则当其值为null或undefined时才认为是空。 -->
+
+isEmpty -Array:<span c-bind="isEmpty(name7)"></span>
+<br>
+isEmpty -String:<span c-bind="isEmpty(name8)"></span>
+<br>
+isEmpty -null:<span c-bind="isEmpty(name9)"></span>
+<br>
+isEmpty -undefined:<span c-bind="isEmpty(name10)"></span>
+<br>
+
+
+<!-- isNotEmpty(value)
+
+与isEmpty(value)的结果相反。 -->
+isNotEmpty:<span c-bind="isNotEmpty(name11)"></span>
+<br>
+<!-- 
+len(value)
+
+获得Array或EntityList的长度。 -->
+len:<span c-bind="len(name12)"></span>
+<br>
+
+<!-- upperCase(str)
+
+将字符串转换为大写。 -->
+upperCase:<span c-bind="upperCase(name13)"></span>
+<br>
+<!-- lowerCase(str)
+
+将字符串转换为小写。 -->
+lowerCase:<span c-bind="lowerCase(name14)"></span>
+<br>
+
+<!-- resource(key, param1, param2, ...)
+
+用于返回cola中定义的国际化资源，其具体用法可以直接参考cola.resource()方法的API文档。 -->
+resource:<span c-bind="resource(name15)"></span>
+<br>
+
+<!-- formatNumber(num, format)
+
+用于对数字进行格式化输出。例如： formatNumber(1234.5678, '$#,##0.00')将输出$1,234.57。 -->
+
+formatNumber:<span c-bind="formatNumber(name17,'$#,##0.00')"></span>
+<br>
+
+<!-- formatDate(date, format)
+
+用于对日期进行格式化输出。例如： formatDate(birthday, 'yyyy-MM-dd')将输出1991-09-01这样的格式。 -->
+formatDate:<span c-bind="formatDate(name18,'yyyy-MM-dd')"></span>
+<br>
+
+
+<!-- filter(list, criteria, caseSensitive, strict)
+
+用于对集合型数据进行过滤。 filter支持三个参数：
+
+criteria 过滤条件，字符串或JSON对象。
+caseSensitive 逻辑值，表示是否对大小写敏感。此参数可省略。
+strict 逻辑值，表示是否按照严格模式进行字符串匹配，即是否启用全文匹配。此参数可省略。
+如果criteria是字符串，表示用该值匹配对象中的每一个属性（如果集合中的对象本身就是一个值而非对象，
+那么则直接匹配该值）。 -->
+
+filter:<input c-bind="name19"> 
+
+
+
+
+<br>
+<!-- 自定义内置Action
+percent 自定义内置Action，用于输出数值的百分比形式.
+percent(0.86)将输出'86%' -->
+
+percent:<span c-bind="percent(0.86)"></span>
+<br>
+<!-- 带有参数的内置Action
+multiply 自定义内置Action，用于对数值进行乘法运算。
+multiply(6,3)将输出18。 -->
+
+
+multiply:<span c-bind="multiply(1,2)"></span>
+<br>
+<!-- javascript引入区域 -->
+<script src="jQuery-2.4.4.js"></script>
+<script src="cola-ui-v1.0.6/src/3rd.js"></script>
+<script src="cola-ui-v1.0.6/src/semantic.js"></script>
+<script src="cola-ui-v1.0.6/src/cola.js"></script>
+<script src="cola-ui-v1.0.6/src/i18n/zh/cola.js"></script>
+<!-- document 内部样式定义区域-->
+<script type="text/javascript">
+    cola(function (model) {
+        model.set("name", "World");
+
+        // 内置Action
+        /*default(value，defaultValue)*/
+            model.set("name1", "name1Ture");
+            model.set("noName1", "name1false");
+        /*int(value)*/
+            model.set("name2", 39.39);
+        /*float(value)*/
+            model.set("name3", 5/3);    
+        /*is(value)*/
+            model.set("name4", 0);    
+        /*bool(value)*/
+            model.set("name5", 1); 
+        /*bool(value)*/
+            model.set("name6", false);   
+        /*isEmpty(value)*/
+            model.set("name7", []);
+            model.set("name8", "");    
+            model.set("name9", null);
+            model.set("name10", undefined);
+        /*isNotEmpty(value)*/
+            model.set("name11", []); 
+        /*len(value)*/
+            model.set("name12", [1,2,3]);
+        /*upperCase(value)*/
+            model.set("name13", "abcdefg"); 
+        /*lowerCase(value)*/
+            model.set("name15", "ABCDEFG"); 
+        /*resource(value)*/
+            model.set("name16", "暂无"); 
+        /*formatNumber(value)*/
+            model.set("name17", "1234.5568");
+        /*formatDate(value)*/
+            model.set("name18", new Date);
+        /*filter(list, criteria, caseSensitive, strict)*/
+            model.set("name19", new Date);
+        // 自定义内置Action
+        cola.defaultAction["percent"] = function(value) {
+            return (value * 100) + "%";
+        }
+        // 带参数的内置Action
+        cola.defaultAction["multiply"] = function(value, num) {
+            return value * num;
+        }
+    });
+</script>
+</body>
+</html>
