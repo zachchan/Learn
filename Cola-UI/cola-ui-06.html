@@ -48,8 +48,8 @@
                     todo.remove();
                 },
                 stat: function () {
-                    var todos = model.get("todos"), done = 0;
-                    todos.each(function (todo) {
+                    var todos = model.get("todos"), done = 0;/*获取todos数据*/
+                    todos.each(function (todo) {/*遍历获取的todos数据*/
                         if (todo.get("done")) done++;
                     });
                     return done + "/" + todos.entityCount;

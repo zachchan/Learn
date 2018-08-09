@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--网页页面字符集-->
+    <meta charset="UTF-8">
+    <!--针对移动设备,网站显示宽度等于设备屏幕显示宽度,内容缩放比例为1:1-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--将下面的 <meta> 标签加入到页面中，可以让部分国产浏览器默认采用高速模式渲染页面：-->
+    <meta name="renderer" content="webkit">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Cola-UI-7</title>
+    <!-- css引入和样式定义区域 -->
+    <link rel="stylesheet" type="text/css" href="cola-ui-v1.0.6/src/semantic.css">
+    <link rel="stylesheet" type="text/css" href="cola-ui-v1.0.6/src/cola.css">
+    <!-- document 内部样式定义区域-->
+    <style>
+        body {
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+Hello <span c-bind="name"></span> !
+<br>
+<input c-bind="name">
+<!-- javascript引入区域 -->
+<script src="jQuery-2.4.4.js"></script>
+<script src="cola-ui-v1.0.6/src/3rd.js"></script>
+<script src="cola-ui-v1.0.6/src/semantic.js"></script>
+<script src="cola-ui-v1.0.6/src/cola.js"></script>
+<script src="cola-ui-v1.0.6/src/i18n/zh/cola.js"></script>
+<!-- document 内部样式定义区域-->
+<script type="text/javascript">
+    cola(function (model) {
+        model.set("name", "World");
+    });
+</script>
+</body>
+</html>
