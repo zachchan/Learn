@@ -25,3 +25,4 @@ Cola-UI 学习笔记
 * [Ajax数据装载](http://htmlpreview.github.com/?https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-04.html)
 * [路由](http://htmlpreview.github.com/?https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-05.html)
 * [todoList](http://htmlpreview.github.com/?https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-06.html)
+* [cola-ui书写规范](https://github.com/zachchan/Learn/blob/master/Cola-UI/cola-ui-07.html)
