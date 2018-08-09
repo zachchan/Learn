@@ -19,10 +19,10 @@
     <script src="cola-ui-v1.0.6/src/cola.js"></script>
 
    <script type="text/javascript">
-    // model.describe()方法声明了addresses的数据是来自于city.json这个URL的。
+    // model.describe()方法声明了dataNameItem 的数据是来自于city.json这个URL的。
     // 这样当页面被渲染时Cola会自动利用Ajax从这个URL中装载实际的数据
         cola(function(model){
-            model.describe("dataName",{
+            model.describe("dataNameItem",{
                 provider:"city.json"
             })
         })
@@ -30,7 +30,7 @@
 </head>
 <body>
    <ul>
-       <li c-repeat="dataName in item">
+       <li c-repeat="dataName in dataNameItem">
             <span c-bind="dataName.city"></span>
             <span c-bind="dataName.postCode"></span>
        </li>
