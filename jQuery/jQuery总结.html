@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--网页页面字符集-->
+    <meta charset="UTF-8">
+    <!--针对移动设备,网站显示宽度等于设备屏幕显示宽度,内容缩放比例为1:1-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--将下面的 <meta> 标签加入到页面中，可以让部分国产浏览器默认采用高速模式渲染页面：-->
+    <meta name="renderer" content="webkit">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>jQuery知识点总结</title>
+    <!-- document 内部样式定义区域-->
+    <style>
+        body {
+            padding: 1em;
+            background-color:#B2E0FF;
+        }
+        p{
+            padding: 0;
+            margin: 0;
+        }
+        .jqd9_1{
+            color:red !important;
+        }
+        .jqd9_2{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <!-- 前言：
+        jQuery是一个js框架(其实就是一个.js文件),
+        它的特点是使用选择器查找要操作的节点,并且将这些节点封装成一个jQuery对象。
+        封装的目的是为了更好地兼容不同的浏览器之间的差异，同时也会简化代码。 -->
+
+    <!-- jQuery编程的基本步骤：
+        1,引入jQuery.js文件
+        2, 使用选择器查找要操作的节点
+        3,调用jQuery对象的属性或者方法来操作相应的节点。 -->
+
+        <b>dom对象</b>
+        <div>jQuery选择器</div>
+        <hr>
+        <div id="jq1">jQuery选择器-基本选择器-id匹配元素</div>
+        <div class="jq1">jQuery选择器-基本选择器-class匹配元素</div>
+        <span>jQuery选择器-基本选择器-元素名匹配元素</span>
+        <br><br>
+        <div class="jq2">jQuery选择器-层次选择器-select1
+            <div style="text-indent:1em">select1儿子1
+                <div style="text-indent:2em">select1孙子1</div>
+            </div>
+            <div style="text-indent:1em">select1儿子2
+                <div style="text-indent:2em">select1孙子2</div>
+            </div>
+        </div>
+        <div >jQuery选择器-层次选择器-select1后面的一个兄弟元素1</div>
+        <div >jQuery选择器-层次选择器-select1后面的一个兄弟元素2</div>
+        <div >jQuery选择器-层次选择器-select1后面的一个兄弟元素3</div>
+        <br><br>
+        <div class="jq3">jQuery选择器-过滤选择器-基本过滤选择器-第一个元素  0</div>
+        <div class="jq3">jQuery选择器-过滤选择器-基本过滤选择器-第二个元素  1</div>
+        <div class="jq3 jq">jQuery选择器-过滤选择器-基本过滤选择器-给定元素(附加类名jq标识) 2</div>
+        <div class="jq3">jQuery选择器-过滤选择器-基本过滤选择器-最后一个元素  3</div>
+        <br><br>
+        <div class="jq4">jQuery选择器-过滤选择器-内容过滤选择器
+            <div style="text-indent:2em">jQuery选择器-过滤选择器-内容过滤选择器-子元素</div>
+        </div>
+        <div class="jq4">jQuery选择器-过滤选择器-内容过滤选择器-我是给定文本的元素
+            <div style="text-indent:2em">jQuery选择器-过滤选择器-内容过滤选择器-子元素</div>
+        </div>
+        <div class="jq4">jQuery选择器-过滤选择器-内容过滤选择器
+            <div style="text-indent:2em">jQuery选择器-过滤选择器-内容过滤选择器-子元素</div>
+        </div>
+        <div class="jq4" style="width:100%;height:1em"></div>
+        <div class="jq4">jQuery选择器-过滤选择器-内容过滤选择器
+            <div style="text-indent:2em">jQuery选择器-过滤选择器-内容过滤选择器-子元素</div>
+        </div>
+        <br><br>
+        <div class="jq5">jQuery选择器-过滤选择器-可见性过滤选择器1</div>
+        <div class="jq5" style="display:none">jQuery选择器-过滤选择器-可见性过滤选择器2-(我不可见1)</div>
+        <div class="jq5"style="display:none">jQuery选择器-过滤选择器-可见性过滤选择器3-(我不可见2)</div>
+        <div class="jq5" style="width:100%;height:1em"></div>
+        <div class="jq5">jQuery选择器-过滤选择器-可见性过滤选择器4</div>
+        <br><br>
+        <div class="jq6">jQuery选择器-过滤选择器-属性过滤选择器1</div>
+        <div class="jq6" style="display:block">jQuery选择器-过滤选择器-属性过滤选择器2-(我有style属性1)</div>
+        <div class="jq6" style="display:block">jQuery选择器-过滤选择器-属性过滤选择器3-(我有style属性2)</div>
+        <div class="jq6" style="width:100%;height:1em"></div>
+        <div class="jq6">jQuery选择器-过滤选择器-属性过滤选择器4</div>
+        <br><br>
+        <div class="jq7">jQuery选择器-过滤选择器-子元素过滤选择器1
+            <p style="text-indent:2em">jQuery选择器-过滤选择器-子元素过滤选择器1-儿子1</p>
+            <p style="text-indent:2em">jQuery选择器-过滤选择器-子元素过滤选择器1-儿子2</p>
+            <p style="text-indent:2em">jQuery选择器-过滤选择器-子元素过滤选择器1-儿子3</p>
+            <p style="text-indent:2em">jQuery选择器-过滤选择器-子元素过滤选择器1-儿子4</p>
+        </div>
+        <br><br>
+        <div class="jq8">jQuery选择器-过滤选择器-表单对象属性过滤选择器
+            <input type="text" disabled="disabled" value="不可用">
+            <input type="text" value="可用">
+            <input type="text" value="可用">
+            <br><br>
+            <form name="from1" id="form1" action="test.do">
+                <p>jQuery选择器-过滤选择器-表单对象属性过滤选择器-单选框<br>
+                        <label>男：<input class="jq8-checkbox" type="radio" name="radio"  value="male" checked="checked"></label>
+                        <label>女：<input class="jq8-checkbox" type="radio" name="radio" value="female" ></label>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单对象属性过滤选择器-复选框<br>
+                    <label>香蕉：<input class="jq8-checkbox" type="checkbox" name="checkbox" value="banana" checked="checked"></label>
+                    <label>苹果：<input class="jq8-checkbox" type="checkbox" name="checkbox" value="apple"  checked="checked"></label>
+                    <label>橘子：<input class="jq8-checkbox" type="checkbox" name="checkbox" value="orange"></label>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单对象属性过滤选择器-selected<br>
+                    selected：
+                 <!-- 展开选项列表 -->
+                    <select name="" id="" multiple="multiple">
+                 <!-- 不展开选项列表 -->
+                    <!-- <select name="" id=""> -->
+                        <option value="" selected="selected">selected1</option>
+                        <option value="">selected2</option>
+                        <option value="">selected3</option>
+                    </select>
+                </p>
+            </form>
+                
+        </div>
+        <br><br>
+        <div class="jq9">jQuery选择器-过滤选择器-表单选择器
+            <br><br>
+            <form name="from1" id="form1" action="">
+                    <p>jQuery选择器-过滤选择器-表单选择器-单行文本框<br>
+                        <label>单行文本框1：<input  type="text"  value="单行文本框1" ></label><br>
+                        <label>单行文本框2：<input  type="text"  value="单行文本框2" ></label>
+                    </p>
+                    <p>jQuery选择器-过滤选择器-表单选择器-密码框<br>
+                        <label>密码框1：<input  type="password"  value="" ></label><br>
+                        <label>密码框2：<input  type="password"  value="" ></label>
+                    </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-单选框<br>
+                        <label>男：<input class="jq8-checkbox" type="radio" name="radio"  value="male" checked="checked"></label>
+                        <label>女：<input class="jq8-checkbox" type="radio" name="radio" value="female" ></label>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-复选框<br>
+                    <label>香蕉：<input class="jq8-checkbox" type="checkbox" name="checkbox" value="banana" checked="checked"></label>
+                    <label>苹果：<input class="jq8-checkbox" type="checkbox" name="checkbox" value="apple"  checked="checked"></label>
+                    <label>橘子：<input class="jq8-checkbox" type="checkbox" name="checkbox" value="orange"></label>
+                </p>
+                
+                <p>jQuery选择器-过滤选择器-表单选择器-submit<br>
+                    <input type="submit" value="submit1"><br>
+                    <input type="submit" value="submit2"><br>
+                    <input type="submit" value="submit3"><br>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-图像<br>
+                    <input type="image" src="https://www.baidu.com/img/baidu_jgylogo3.gif" width="64px" height="64px">
+                    <input type="image" src="" width="64px" height="64px">
+                </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-reset<br>
+                    <input type="reset" value="reset1"><br>
+                    <input type="reset" value="reset2"><br>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-button<br>
+                    <input type="button" value="button1"><br>
+                    <input type="button" value="button2"><br>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-file<br>
+                    <input type="file" value="file1"><br>
+                    <input type="file" value="file2"><br>
+                </p>
+                <p>jQuery选择器-过滤选择器-表单选择器-hidden<br>
+                    <input type="text" value="我后面有个隐藏元素"><br>
+                    <input type="hidden" value="我隐藏了，你找不到我"><br>
+                    <input type="hidden" value="我也隐藏了，找到我了吗？"><br>
+                </p>
+            </form>
+                
+        </div>
+        <div>jQuery DOM操作</div>
+        <hr>
+        <div class="jqd1">html() <span>子节点</span></div>
+        <div class="jqd2">text() <span>子节点</span></div>
+        <div class="jqd3">
+                <form action="">val() <br>
+                        <input type="text" value="文本框">
+                        <input type="checkbox" name="" id="" value="checked1" >
+                        <input type="checkbox" name="" value="checked1" id="" checked="checked">
+                        <select name="" id="">
+                            <option value="select1">select1</option>
+                            <option value="select2" selected="selected">select2</option>
+                        </select>
+                    </form>
+        </div>
+        <div class="jqd4" style="color:red">attr()</div>
+        <div class="jqd5">append() 我是第一个文本节点，父亲的类名为.jqd5
+            <div style="text-indent:2em">我是第一个标签元素</div>
+        </div>
+        <div class="jqd6">remove()
+            <div class="jqd6_1" style="text-indent:2em">我是被清空节点的元素1</div>
+            <div class="jqd6_2" style="text-indent:2em">我是被remover()删除的元素2</div>
+            <div class="jqd6_3" style="text-indent:2em">我是被remover(".jqd6_3")删除的元素3</div>
+        </div>
+        <div class="jqd7">clone()
+                <div class="jqd7_1" style="text-indent:2em">我是节点1</div>
+        </div>
+        <div class="jqd8">dom属性操作  
+                <div class="jqd8_1" style="text-indent:2em">我是元素</div>
+        </div>
+
+        <div class="jqd9">dom样式操作
+            <div class="jqd9_1" style="text-indent:2em">样式一(点我切换样式)</div>
+            <div class="jqd9_1" style="text-indent:2em">样式二</div>
+            <div class="jqd9_1" style="text-indent:2em">样式三</div>
+        </div>
+        <div class="jqd10">遍历dom节点
+                <div style="text-indent:2em">元素一
+                    <div style="text-indent:3em">孙子</div>
+                </div>
+                <div style="text-indent:2em">元素二</div>
+                <div style="text-indent:2em">元素三</div>
+                <p style="text-indent:2em">元素四</p>
+        </div>
+        <div class="jqd11">jQuery事件处理机制
+                <div style="text-indent:2em">事件绑定</div>
+                <input type="text">
+                <div style="text-indent:2em"><a href="https://baidu.com">链接</a></div>
+        </div>
+        <div class="jqd12" style="width:300px;height:200px;border:1px solid red;">动画
+            <div class="jqd12_1"  style="width:30px;height:20px;border:1px solid green;"></div>
+            <div class="jqd12_2"  style="width:30px;height:20px;border:1px solid cyan; background-color:red;"></div>
+            <div class="jqd12_3"  style="width:30px;height:20px;border:1px solid orange; background-color:green;"></div>
+        </div>
+        <div class="jqd13">类数组操作
+            <ul style="text-indent:2em">
+                <li style="text-indent:3em">li1</li>
+                <li style="text-indent:3em">li2</li>
+                <li id="jqd13_index" style="text-indent:3em">li3</li>
+            </ul>
+        </div>
+
+
+            
+        
+        
+<!-- javascript引入区域 -->
+<script src="jQuery-2.1.3.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //alert(1);
+    /*dom对象转换为jQuery对象*/    
+        var $obj = $("b"); 
+       // console.log($obj);
+    /*jQuery对象转换为dom对象*/    
+        var obj = $obj.get(0);//方式1
+       // var obj = $obj.get()[0]; //方式2
+       // console.log(obj);
+    /*jQuery与prototype如何同时使用？*/ 
+        //var $a = jQuery.noConflict(); //解决prototype-1.3.1.js 与 jQuery.js 同时使用$ 的冲突
+        //console.log($a);
+    /*jQuery选择器*/
+        /*基本选择器*/
+            /* 匹配所有元素 * */
+                //  var jq1 = $("body *").css("background-color","white");
+            /*根据给定的ID匹配一个元素 #id名*/
+                // var jq2 = $("#jq1").css("background-color","red");
+            /*根据给定的类匹配元素 .class名*/ 
+                // var jq3 = $(".jq1").css("background-color","#B2E0FF");
+            /*根据给定的元素名匹配所有元素  element 元素名*/ 
+                // var jq4 = $("span").css("background-color","red");
+            /*将每一个选择器匹配到的元素合并后一起返回。 #id,.class,element*/ 
+                // var jq5 = $("#jq1,.jq1,span").css("background-color","red");
+        /*层次选择器*/ 
+            /*匹配select1下的所有儿子元素（包含孙子元素） select1 select儿子*/
+                // var jq6 = $(".jq2 div").css("background-color","red");
+            /*匹配select1下的所有子元素（不包含孙子元素）select1>select儿子*/ 
+                // var jq7 = $(".jq2>div").css("background-color","red");
+            /*匹配紧跟在select1后的第一个兄弟元素（同辈元素）select1+select兄弟*/
+                // var jq8 = $(".jq2+div").css("background-color","red");
+            /*匹配select1后的所有兄弟元素 select1~select兄弟*/
+                // var jq9 = $(".jq2~div").css("background-color","red");
+        /*jQuery过滤选择器*/
+            /*基本过滤选择器*/
+                /*获取第一个元素 :first*/
+                    // var jq10 = $(".jq3:first").css("background-color","red");
+                /*获取最后一个元素 :last*/
+                    // var jq11 = $(".jq3:last").css("background-color","red");
+                /*获取去除给定元素后的所有匹配元素 :not(selector)*/
+                    // var jq12 = $(".jq3:not(.jq)").css("background-color","red");
+                /*匹配所有索引值为偶数的元素，从 0 开始计数  :even*/
+                    // var jq13 = $(".jq3:even").css("background-color","red");
+                /*匹配所有索引值为奇数的元素，从 0 开始计数  :odd*/  
+                    // var jq14 = $(".jq3:odd").css("background-color","red");
+                /*匹配一个给定索引值的元素 :eq(index)*/
+                    // var jq15 = $(".jq3:eq(0)").css("background-color","red");
+                /*匹配所有大于给定索引值的元素 :gt(index)*/
+                    // var jq16 = $(".jq3:gt(0)").css("background-color","red"); 
+                /*匹配所有小于给定索引值的元素 :lt(index)*/   
+                    // var jq17 = $(".jq3:lt(3)").css("background-color","red");
+            /*内容过滤选择器*/
+                /*匹配包含给定文本的元素 :contains(text)*/
+                    //  var jq18 = $(".jq4:contains(jQuery选择器-过滤选择器-内容过滤选择器-我是给定文本的元素)").css("background-color","red");
+                /*匹配没有子元素且文本为空的元素 :empty*/
+                    // var jq19 = $(".jq4:empty").css("background-color","red");
+                /*跟empty相反,即有子节点，或者内容不为空的节点。 :parent*/ 
+                    // var jq20 = $(".jq4:parent").css("background-color","red");
+            /*可见性过滤选择器*/
+                /*匹配所有不可见元素，或者type为hidden的元素 :hidden*/
+                    // console.log($(".jq5:hidden"));
+                /*匹配所有的可见元素 :visible*/
+                    // var jq21 = $(".jq5:visible").css("background-color","red");
+            /*属性过滤选择器*/
+                /*匹配包含给定属性的元素 [attribute]*/
+                    // var jq22 = $(".jq6[style]").css("background-color","red");
+                /*匹配给定的属性是某个特定值的元素 [attribute=value] 注意：属性后面带分号匹配不到*/ 
+                    // var jq23 = $(".jq6[style='display:block']").css("background-color","red");                         
+                /*匹配属性不等于特定值的元素 [attribute!=value] 注意：属性后面带分号匹配不到*/
+                    // var jq24 = $(".jq6[style!='display:block']").css("background-color","red");
+            /*子元素过滤选择器*/              
+                /*匹配其父元素下的第N个子或奇偶元素（即同辈中第N个元素）:nth-child(index/even/odd)*/
+                    // var jq25 = $(".jq7 p:nth-child(3)").css("background-color","red");
+                    // var jq26 = $(".jq7 p:nth-child(even)").css("background-color","red");
+                    // var jq27 = $(".jq7 p:nth-child(odd)").css("background-color","red");
+                /*匹配其父元素下第一个子元素 :first-child*/
+                    // var jq28 = $(".jq7 p:first-child").css("background-color","red");
+                /*匹配其父元素下最后一个子元素 :last-child*/   
+                    // var jq29 = $(".jq7 p:last-child").css("background-color","red");
+            /*表单对象属性过滤选择器*/ 
+                /*匹配所有可用元素 :enabled*/ 
+                    // var jq30 = $(".jq8 input:enabled").css("background-color","red");
+                /*匹配所有不可用元素 :disabled*/
+                    // var jq31 = $(".jq8 input:disabled").css("background-color","red");
+                /*匹配复选框、单选按钮中被选中的元素 :checked*/
+                    var jq32 = $(".jq8 input:checked");
+                    // console.log(jq32);
+                            /*遍历获取用户点击选中的表单元素*/
+                            // $.each(jq32,function(index,value){
+                            //     // console.log($(value))
+                            //         $(value).on('change',function(){
+                            //             /*$("").parent() 获取父节点*/
+                            //            alert($(this).parent().text())   
+                            //         })
+                            // })
+                /*匹配所有选中的option元素  :selected*/
+                    var jq33 = $(".jq8 option:selected");
+                    // console.log(jq33.get(0))
+
+                         /*遍历获取用户点击选中的option元素*/
+                            // $.each($(".jq8 option"),function(index,value){ 
+                            //    $(value).on("click",function(){
+                            //        alert($(":selected").text());
+                            //     })                                  
+                            // })
+            /*表单选择器*/
+                /*匹配所有 input, textarea, select 和 button 元素 :input*/
+                    // var jq34 = $(".jq9 :input").css("background-color","red");
+                /*匹配所有的单行文本框 :text*/ 
+                    // var jq35 = $(".jq9 :text").css("background-color","red");
+                /*匹配所有密码框 :password*/
+                    //  var jq36 = $(".jq9 :password").css("background-color","red");
+                /*匹配所有单选按钮 :radio*/
+                    // var jq37 = $(".jq9 :radio").css("background-color","red");
+                /*匹配所有复选框 :checkbox*/
+                    // var jq38 = $(".jq9 :checkbox").css("background-color","red");            
+                /*匹配所有提交按钮 :submit*/
+                    // var jq39 = $(".jq9 :submit").css("background-color","red"); 
+                /*匹配所有图像域 :image*/ 
+                    // var jq40 = $(".jq9 :image").css("background-color","red");
+                /*匹配所有重置按钮 :reset*/ 
+                    // var jq40 = $(".jq9 :reset").css("background-color","red");
+                /*匹配所有按钮   :button */
+                    // var jq41 = $(".jq9 :button").css("background-color","red");
+                /*匹配所有文件域 :file*/
+                    // var jq42 = $(".jq9 :file").css("background-color","red");
+                /*匹配所有不可见元素，或者type为hidden的元素*/
+                    // var jq43 = $(".jq9 :hidden").css("background-color","red");
+
+        /*dom操作：利用选择器找到要操作的节点之后，访问节点的html内容、text内容、节点的值以及节点的属性值。除此之外，还可以修改这些值。*/
+            /*查询 dom节点*/
+                /*获取元素的节点内容，相当于innerHTML  html() */
+                    var jqd1 = $(".jqd1").html();
+                    // console.log(jqd1);
+                /*获取div,p,span等元素内文本，相当于innerText  text() */ 
+                    var jqd2 = $(".jqd2").text();
+                    // console.log(jqd2);
+                /*获取文本框text、下拉列表select或选择框checkbox的值 val()*/
+                    var jqd3_1 = $(".jqd3 input[type='text']").val();
+                    var jqd3_2 = $(".jqd3 input[type='checkbox']").val();
+                    var jqd3_3 = $(".jqd3 select").val();
+                    // console.log(jqd3_3);
+                /*获取或设置节点的属性值 attr()*/ 
+                    var jqd4 = $(".jqd4").attr("style");
+                    // console.log(jqd4)
+            /*创建 dom节点  $(html标签)*/
+                var jqcd = $("<span>jQuery 创建的dom<span>");
+                // console.log(jqcd);
+            /*插入 dom节点*/
+                /*向每个匹配的元素内部追加内容，当做最后一个儿子 append()*/
+                var jqd5 = $(".jqd5").append("<div style='text-indent:2em;color:blue;'>我是用append()插入的元素</div>")
+                /*向每个匹配的元素内部前置内容。当做第一个儿子 prepend()*/
+                var jqd5 = $(".jqd5").prepend("<div style='text-indent:2em;color:blue;'>我是用prepend()插入的元素</div>")
+                /*在每个匹配的元素之后插入内容，当做后一个兄弟  after()*/ 
+                var jqd5 = $(".jqd5").after("<div style='color:blue;'>我是.jqd5元素的最后一个兄弟 after()</div>")
+                /*在每个匹配的元素之前插入内容，当做前一个兄弟 before()*/
+                var jqd5 = $(".jqd5").before("<div style='color:blue;'>我是.jqd5元素的第一个兄弟 before()</div>")
+            /*删除 dom节点 */
+                /*使用选择器选出dom节点 并用remove()删除 */
+                // var jqd6 = $('.jqd6 div:eq(1)').remove();
+                /*使用选择器符合条件dom节点集合 并用remove('类名/id名...')删除*/
+                // var jqd6 = $('.jqd6 div').remove(".jqd6_3");  
+                /*清空节点 empty()*/
+                // var jqd6 = $('.jqd6 div:eq(0)').empty();
+            /*复制 dom节点 */
+                /*不复制行为 clone()*/
+                   var jqd7 = $(".jqd7").append($(".jqd7 div:eq(0)").clone());
+                   $(".jqd7 div:eq(0)").on("click",function(){
+                       alert("我有点击行为");
+                   });
+               /*使复制的节点也具有行为 clone(true)*/
+               var jqd7 = $(".jqd7").append($(".jqd7 div:eq(0)").clone(true));
+
+               $(".jqd7 div:eq(1)").text("我是复制的节点 clone()");
+               $(".jqd7 div:eq(2)").text("我是复制的节点 clone(true)");
+
+            /*dom属性操作*/
+               /*读取一个dom元素的属性 attr(' ');*/
+               var jqd8 = $(".jqd8_1").attr("style");
+                // console.log(jqd8);
+               /*设置一个dom元素的属性 attr(' '，' '); 一次设置多个 attr({"":"","":""});*/
+               $(".jqd8_1").attr("style","text-indent:2em;color:red");
+               $(".jqd8_1").attr({"style":"text-indent:2em;color:red","id":"#jqd8_1"});
+               /*删除dom元素的属性：removeAttr(' ')*/
+                //  $(".jqd8_1").removeAttr("id");
+            /*dom样式操作*/
+                /*获取和设置: attr("class",""), attr("style","");*/
+                // console.log($(".jqd9").attr("class"));
+                $(".jqd9>div:eq(0)").attr("class","jqd9_2")
+                /*追加样式*/
+                $(".jqd9>div:eq(1)").addClass("jqd9_2")
+                /*移除样式*/
+                $(".jqd9>div:eq(1)").removeClass("jqd9_2")
+                //or
+                // $(".jqd9>div:eq(1)").removeClass('jqd9_1 jqd9_2')
+                //or
+                $(".jqd9>div:eq(1)").removeClass();
+                /*切换样式*/
+                $('.jqd9>div:eq(0)').on("click",function(){
+                    $(this).toggleClass('jqd9_1');
+                });
+                /*是否有某个样式*/
+                // console.log($(".jqd9>div:eq(1)").hasClass("jqd9_1"))
+                /*读取css*/
+                // console.log($(".jqd9>div:eq(0)").css("color"));
+                /*设置css*/     
+                // console.log($(".jqd9>div:eq(0)").css("color","cyan")); 
+                //or
+                // console.log($(".jqd9>div:eq(0)").css({"font-size":"1.2em","color":"green"}));
+            /*遍历dom节点 */
+                /*只考虑子元素，不考虑其它后代元素  children() / children(selector)*/
+                // var jqd10 = $('.jqd10').children();
+                var jqd10 = $('.jqd10').children('div');
+                // console.log(jqd10);
+                /*下一个兄弟*/
+                // var jqd11 = $('.jqd10 div:eq(0)').next();
+                // console.log(jqd11.get(0));
+                /*上一个兄弟*/
+                var jqd12 = $('.jqd10 div:eq(2)').prev();
+                // console.log(jqd12.get(0));
+                /*其它兄弟 siblings(selector)*/
+                var jqd13 = $(".jqd10 div:eq(2)").siblings($(".jqd10 div")); //除了.jqd10 div:eq(2)外的其他兄弟
+                // var jqd13 = $(".jqd10 div").siblings();
+                //or
+                jqd13.css("color","red");
+                /*父节点 parent()*/
+                var jqd14 = $('.jqd10 div:eq(2)').parent();
+                // console.log(jqd14.get(0));
+                /*从当前节点开始，查找所有后代，包括孙子 find(selector)*/
+                var jqd15 = $(".jqd10").find("div");
+                jqd15.css("color","green");
+
+            /*事件处理机制   event*/ 
+                /*事件绑定*/
+                // $(".jqd11 div").bind("click",function(){
+                //     alert();
+                // })
+                    //可以简写为
+                    // $(".jqd11 div").click(function(){
+                    //     alert("我是简写的事件绑定-点击事件")
+                    // })
+                /*合成事件*/
+                    /*模拟光标悬停事件，区别于CSS中的伪类*/
+                        // $(".jqd11 div").hover(function(event){
+                        //     $(this).addClass("jqd9_1");
+                        // },function(){
+                        //     $(this).removeClass('jqd9_1');
+                        // });
+                        //相当于以下连个函数的合成
+                        // $(".jqd11 div").mouseenter(function(){
+                        //     $(this).addClass("jqd9_1");
+                        // });
+                        // $(".jqd11 div").mouseleave(function(){
+                        //     $(this).removeClass("jqd9_1");
+                        // });
+                        //上面的mouseenter和mouseleave两个函数可以合并为
+                        /*mouseenter和mouseover效果一样，可以互换使用mouseout和mouseleave效果一样，可以互换使用*/
+                        $(".jqd11 div").mouseenter(function(){
+                            $(this).addClass("jqd9_1");
+                        }).mouseleave(function(){
+                            $(this).removeClass("jqd9_1");
+                        });
+                    /*模拟鼠标连续单击事件 toggle*/    
+                        $(".jqd11 div").toggle(function(){
+                            $(this).hide("jqd9_2");
+                        },function(){
+                            $(this).show("jqd9_2");
+                        });
+                /*事件冒泡 */
+                    /*获得事件对象*/
+                        // $(".jqd11 div").click(function(e){
+                        //     console.log(e);
+                        // });
+                        /*依据事件对象获得事件源(即哪一个节点产生了该事件，返回的是原始的DOM节点)，
+                        其中e不再是DOM对象，而是封装之后的JQuery对象。*/
+                        $(".jqd11 div").click(function(e){
+                        // console.log(e.srcElement); //ie
+                        // e.srcElement || e.target; //同时兼容ie,firefox,chrome
+                        // console.log(e.target);//firefox,chrome
+                        // alert(e.clientX + ':' + e.clientY);//依据事件对象获得鼠标点击的坐标（相对于屏幕）
+                        });
+                    /*事件对象的属性*/
+                        // $(".jqd11 div").click(function(event){
+                        //         console.log(event.type); //事件类型
+                        //         console.log(event.target); //返回事件源
+                        //         console.log(event.pageX,event.pageY); //获得相对于当前浏览器页面的坐标
+                        // });
+                    /*停止冒泡 */
+                        // $(".jqd11 div").click(function(e){
+                        //     alert("你点击了一个链接");
+                        //     //取消冒泡
+                        //     e.stopPropagation(); //链接处于div中，当取消冒泡后，单击链接便不会触发div上面onlick事件的执行，上例中的输出结果为：你点击了一个链接
+                        // });            
+                    /*停止默认行为 */
+                        // $(".jqd11 div a").click(function(e){
+                        //     alert("你点击了一个链接");
+                        //     e.preventDefault();//阻止A标签的默认跳转行为
+                        // });
+                    /*模拟操作*/
+                        $(".jqd11 div").click(function(e){
+                           $(".jqd11 input:enabled").trigger("focus");//点击兄弟元素，input 自动获得焦点
+                        });
+                /*动画 animate  速度:  'slow','normal','fast' / 800(毫秒)*/
+                        /*通过同时改变元素的宽度与高度来实现显示和隐藏的效果。 hide/show(1000)*/
+                            $(".jqd12 .jqd12_1").click(function(){
+                                // $(this).hide();
+                                $(this).hide(1000);//参数为动画执行时间
+                                $(this).show(1000);//参数为动画执行时间
+                            })
+                        /* 通过改变元素的不透明度来实现显示和隐藏的效果 fadeIn/fadeOut(速度,callback);*/
+                            $(".jqd12 .jqd12_2").click(function(){
+                                $(this).fadeOut(500);
+                                $(this).fadeIn(500,function(){
+                                    alert("动画执行完成");
+                                });
+                            });
+                        /*通过改变元素的高度来实现显示和隐藏的效果 slideUp /slideDown*/
+                            $(".jqd12 .jqd12_3").click(function(){
+                                $(this).slideUp(500);
+                                $(this).slideDown(500,function(){
+                                    alert("动画执行完成");
+                                });
+                            });
+                        /*自定义动画  animate(params,speed,callback)  
+                                        params:是一个js对象，描述了动画执行结束时元素的样式
+                                        speed:  毫秒
+                                        callback: 在动画执行完毕之后，会执行这个函数*/
+                            
+                            // $(".jqd12 .jqd12_3").animate({"padding-left":"200px"},3000).fadeOut("slow");
+                            $(".jqd12 .jqd12_3").animate({"padding-left":"50px"},1000,function(){
+                                // alert("done");
+                            });
+                    /*类数组的操作*/
+                            //jQuery选择器返回的是一个jQuery对象(该对象可能包括了多个dom节点),
+                            // 如果要对这些dom节点分别做不同的处理，就需要去遍历，需要调用jQuery对象提供的一些方法或者属性，称之为类数组的操作。
+                            // 类数组就是DOM节点数组
+                        /*each(fn(i,index)) 循环遍历每一个元素,this代表被迭代的dom对象 
+                                $(this)代表被迭代的jQuery对象。（i根据实际情况选择要还是不要）。*/ 
+                            //    $(".jqd13 ul li").each(function(i,index){
+                            //        console.log($(index).text())
+                            //    })
+                        /*返回index+1位置处的jQuery对象 eq(index)*/ 
+                            // console.log($(".jqd13 ul li").eq(1))       
+                        /*返回下标，其中obj可以是dom对象或者jQuery对象。index(obj)*/ 
+                            // console.log( $(".jqd13 ul li:eq(2)").index()); 
+                            // console.log( $(".jqd13 ul li:eq(2)").index("#jqd13_index"));
+                        /*dom对象的个数*/ 
+                            // console.log( $(".jqd13 ul li").length);
+                        /*返回dom对象组成的数组*/
+                            // console.log( $(".jqd13 ul li").get());
+                        /*返回index+1个dom对象*/ 
+                            // console.log( $(".jqd13 ul li").get(1));
+                    /*jQuery对ajax编程的支持 */
+                        /*load方法:将服务器返回的数据直接添加到符合要求的节点之上，相当于obj.innerHTML = 返回的数据。*/                 
+                           //$obj.load(请求地址,[请求参数]);
+                           //请求参数可以有两种形式:
+                           //第一种：请求字符串，比如 "username=zs",
+                           //或者“username=zs&age=22"。
+                           //第二种：javascript对象，比如{'username':'zs'}，
+                           //或者{'username':'zs','age':22}
+                           //load方法如果没有请求参数，会发送get请求，如果有请求参数，会发送post请求。
+                        /*$.get方法：向服务器发送get请求*/
+                           //$.get(url,[data],[callback],[type]);
+                           //url:请求地址
+                           //data:请求参数,可以是请求字符串或者是js对象。
+                           //格式为：{key,value}
+                           //callback: 是一个回调函数，用于处理服务器返回的数据，其格式function(data,statusText),
+                           //data是服务器返回的数据，如果服务器返回的是json字符串，$.get方法会自动将其转换成一个js对象或者js对象组成的数组。
+                           //statusText是服务器处理的状态。
+                           //type:服务器返回的数据类型:
+                           //text : 文本字符串
+                           //html : html内容
+                           //xml: 返回dom兼容的xml对象
+                           //json: json字符串
+                           //script: javascript脚本     
+                        /*$.post()格式同上*/ 
+                        /*$.put(url,[data],[callback],[type])*/
+                        /*$.ajax方法 ：可以设置不同的参数，控制ajax对象向服务器发请求。*/
+                           //$.ajax(options);
+                           //options是一个形如{key1:value1,key2,value2...}的js对象，用于指定发送请求的选项。
+                           //选项参数如下：
+                           //url(string):请求地址
+                           //type(string):GET/POST
+                           //data(object/string):请求参数，可以是请求字符串或者js对象
+                           //dataType(string) :服务器返回的数据类型
+                           //success(function):请求成功后调用的回调函数，有两个参数：function(data,textStatus),
+                           //其中，data是服务器返回的数据，textStatus 描述状态的字符串。
+                           //error(function):请求失败时调用的函数，有三个参数function(xhr,textStatus,errorThrown),
+                           //xhr: ajax对象，即XMLHttpRequest对象。
+                           //textStatus和errorThrown，jQuery保证其中的一个参数可以获得异常的描述。
+                           //async: true(缺省)/false
+                           /*示例*/
+                           $(function(){
+                                $('#s1').change(function(){
+                                        //先清空表格
+                                        $(element).empty();
+                                        $.ajax({
+                                            'url':'carInfo.do',
+                                            'type':'post',
+                                            'data':'carName=' + $(element).val(),
+                                            'dataType':'JSON',
+                                            'success':function(data){
+                                                //data:服务器返回的数据如果服务器返回的是xml,浏览器不一样，
+                                                //则生成的dom树的结果也不一样，为了方便解析dom树，
+                                                //一般我们使用$()函数将其转换成jQuery对象,然后进行遍历或者查找。
+                                                $(element).append(
+                                                   $(data)
+                                                );
+                                            },
+                                            'error':function(){
+                                                alert('服务暂时不可用');
+                                            }
+                                        });
+                                });
+                            });
+    })              
+</script>
+</body>
+</html>
