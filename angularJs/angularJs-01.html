@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app="todoApp">
+<head>
+    <!--网页页面字符集-->
+    <meta charset="UTF-8">
+    <!--针对移动设备,网站显示宽度等于设备屏幕显示宽度,内容缩放比例为1:1-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--将下面的 <meta> 标签加入到页面中，可以让部分国产浏览器默认采用高速模式渲染页面：-->
+    <meta name="renderer" content="webkit">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>AngularJs-01</title>
+    <link rel="stylesheet" href="todo.css">
+    <!-- document 内部样式定义区域-->
+    <style>
+        body {
+            padding: 1em;
+        }
+    </style>
+    <!-- javascript引入区域 -->
+    
+    <script src="angular.1.4.8.min.js"></script>
+    <script src="todo.js"></script>
+</head>
+<body>
+    <h2>Todo</h2>
+    <div ng-controller="TodoListController as todoList">
+      <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+      [ <a href="" ng-click="todoList.archive()">archive</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="todo in todoList.todos">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+    </div>
+</body>
+</html>
